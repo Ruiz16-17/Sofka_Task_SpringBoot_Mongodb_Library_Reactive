@@ -19,22 +19,6 @@ import java.util.stream.Collectors;
 public class MaterialService  {
 /*
 
-    public List<MaterialDTO> findAllMaterialByThematicArea(String thematicArea) {
-        Query query = new Query()
-                .addCriteria(Criteria.where("thematicArea").regex(thematicArea));
-        List<Material> materialList = mongoTemplate.find(query, Material.class);
-
-        return materialMapper.fromCollectionList(materialList);
-    }
-
-    public List<MaterialDTO> findAllMaterialByTypeMaterial(String typeMaterial) {
-        Query query = new Query()
-                .addCriteria(Criteria.where("typeMaterial").regex(typeMaterial));
-        List<Material> materialList = mongoTemplate.find(query, Material.class);
-
-        return materialMapper.fromCollectionList(materialList);
-    }
-
 
 
     public String returnMaterial(String id) {
