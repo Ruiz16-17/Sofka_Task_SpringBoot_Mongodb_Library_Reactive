@@ -13,16 +13,16 @@ import java.util.Objects;
 
 @Service
 @Validated
-public class UseCaseUpdateMaterial implements SaveMaterial{
+public class UpdateMaterialUseCase implements SaveMaterial {
 
     private final MaterialRepository materialRepository;
-    private  final MaterialMapper materialMapper;
+    private final MaterialMapper materialMapper;
 
-    public UseCaseUpdateMaterial(MaterialRepository materialRepository, MaterialMapper materialMapper) {
+    public UpdateMaterialUseCase(MaterialRepository materialRepository, MaterialMapper materialMapper) {
         this.materialRepository = materialRepository;
         this.materialMapper = materialMapper;
     }
-    
+
     @Override
     public Mono<String> apply(MaterialDTO materialDTO) {
         Objects.requireNonNull(materialDTO.getId(), "Id is required");

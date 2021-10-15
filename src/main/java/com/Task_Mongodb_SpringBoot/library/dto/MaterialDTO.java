@@ -21,11 +21,11 @@ public class MaterialDTO {
     public MaterialDTO() {
     }
 
-    public MaterialDTO(String id, String typeMaterial, String name, String thematicArea, boolean isAvailable, int numberCopyMaterial, LocalDate borrowDateMaterial) {
+    public MaterialDTO(String id, String typeMaterial, String thematicArea, String name, boolean isAvailable, int numberCopyMaterial, LocalDate borrowDateMaterial) {
         this.id = id;
         this.typeMaterial = typeMaterial;
-        this.name = name;
         this.thematicArea = thematicArea;
+        this.name = name;
         this.isAvailable = isAvailable;
         this.numberCopyMaterial = numberCopyMaterial;
         this.borrowDateMaterial = borrowDateMaterial;

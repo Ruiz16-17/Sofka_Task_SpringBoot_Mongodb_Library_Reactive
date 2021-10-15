@@ -1,6 +1,7 @@
 package com.Task_Mongodb_SpringBoot.library.router;
 
 import com.Task_Mongodb_SpringBoot.library.dto.MaterialDTO;
+import com.Task_Mongodb_SpringBoot.library.useCase.AvailableMaterialUseCase;
 import com.Task_Mongodb_SpringBoot.library.useCase.FindByIdMaterialUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,17 +15,16 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
-public class FindByIdMaterialRouter {
+public class AvailableMaterialRouter {
 
     @Bean
-    public RouterFunction<ServerResponse> getById(FindByIdMaterialUseCase findByIdMaterialUseCase){
+    public RouterFunction<ServerResponse> getAvailableMessageMaterialByName(AvailableMaterialUseCase availableMaterialUseCase){
         return route(
-                GET("/get/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                GET("/availableMaterial/{name}").and(accept(MediaType.APPLICATION_JSON)),
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromPublisher(findByIdMaterialUseCase.apply(request.pathVariable("id")), MaterialDTO.class))
+                        .body(BodyInserters.fromPublisher(availableMaterialUseCase.apply(request.pathVariable("name")), String.class))
                         .switchIfEmpty(ServerResponse.notFound().build())
         );
     }
-
 }

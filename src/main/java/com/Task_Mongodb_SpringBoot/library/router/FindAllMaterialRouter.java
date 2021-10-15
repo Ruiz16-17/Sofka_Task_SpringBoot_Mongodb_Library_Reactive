@@ -1,7 +1,7 @@
 package com.Task_Mongodb_SpringBoot.library.router;
 
 import com.Task_Mongodb_SpringBoot.library.dto.MaterialDTO;
-import com.Task_Mongodb_SpringBoot.library.useCase.UseCaseFindAllMaterial;
+import com.Task_Mongodb_SpringBoot.library.useCase.FindAllMaterialUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -16,12 +16,12 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 @Configuration
 public class FindAllMaterialRouter {
     @Bean
-    public RouterFunction<ServerResponse> getAll(UseCaseFindAllMaterial useCaseFindAllMaterial){
+    public RouterFunction<ServerResponse> getAll(FindAllMaterialUseCase findAllMaterialUseCase){
         return route(
                 GET("/findAll").and(accept(MediaType.APPLICATION_JSON)),
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromPublisher(useCaseFindAllMaterial.get(), MaterialDTO.class))
+                        .body(BodyInserters.fromPublisher(findAllMaterialUseCase.get(), MaterialDTO.class))
         );
     }
 }
