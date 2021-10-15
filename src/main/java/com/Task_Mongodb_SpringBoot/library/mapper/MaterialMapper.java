@@ -13,7 +13,7 @@ import java.util.function.Function;
 @Component
 public class MaterialMapper {
 
-    public Function<MaterialDTO, Material> mapperToData(String id) {
+    public Function<MaterialDTO, Material> mapperToMaterial(String id) {
 
         return updateData -> {
             var material = new Material();
@@ -29,7 +29,7 @@ public class MaterialMapper {
 
     }
 
-    public Function<Material, MaterialDTO> mapDatoToDTO() {
+    public Function<Material, MaterialDTO> mapMaterialToDTO() {
         return entity -> new MaterialDTO(
                 entity.getId(),
                 entity.getTypeMaterial(),

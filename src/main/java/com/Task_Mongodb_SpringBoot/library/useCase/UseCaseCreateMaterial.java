@@ -24,6 +24,6 @@ public class UseCaseCreateMaterial implements SaveMaterial{
 
     @Override
     public Mono<String> apply(MaterialDTO materialDTO) {
-        return materialRepository.save(materialMapper.mapperToData(null).apply(materialDTO)).map(Material::getId);
+        return materialRepository.save(materialMapper.mapperToMaterial(null).apply(materialDTO)).map(Material::getId);
     }
 }
