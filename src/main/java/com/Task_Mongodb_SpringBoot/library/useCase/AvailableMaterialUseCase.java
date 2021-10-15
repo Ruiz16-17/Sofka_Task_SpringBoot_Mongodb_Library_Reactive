@@ -8,6 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.net.InetSocketAddress;
 import java.time.LocalDate;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -24,6 +25,19 @@ public class AvailableMaterialUseCase implements Function<String, Mono<String>> 
         this.materialMapper = materialMapper;
     }
 
+    public Mono<String> getLastBorrowDateByName(String name){
+
+        return materialRepository.findAll()
+                .map(materialMapper.mapMaterialToDTO())
+                .filter(materialDTO -> name.equalsIgnoreCase(materialDTO.getName()))
+                .collectList()
+                .flatMap(materialDTOList -> Mono.just("Not avalable. Was borrowed on "+materialDTOList
+                        .stream()
+                        .map(MaterialDTO::getBorrowDateMaterial)
+                        .max(LocalDate::compareTo)
+                        .get()));
+
+    }
 
     @Override
     public Mono<String> apply(String name) {
@@ -34,9 +48,8 @@ public class AvailableMaterialUseCase implements Function<String, Mono<String>> 
                 .collectList()
                 .flatMap(materialDTOList -> {
                     if (materialDTOList.isEmpty()) {
-                        //String lastBorrowedDate = materialDTOList.stream().map(materialDTO -> materialDTO.getBorrowDateMaterial()).max(LocalDate::compareTo).get().toString();
 
-                        return Mono.just("Not available ");
+                        return getLastBorrowDateByName(name);
                     }
 
                     return Mono.just("Available");

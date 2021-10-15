@@ -35,20 +35,7 @@ public class MaterialService  {
         return materialMapper.fromCollectionList(materialList);
     }
 
-    public String borrowMaterial(String id) throws Exception {
 
-        MaterialDTO materialDTO = findById(id);
-
-        if (materialDTO.isAvailable()) {
-
-            materialDTO.setAvailable(false);
-            materialDTO.setBorrowDateMaterial(LocalDate.now());
-            update(materialDTO);
-            return "Has been borrowed.";
-        }
-
-        return "Not Available.";
-    }
 
     public String returnMaterial(String id) {
 

@@ -31,11 +31,11 @@ public class MaterialDTO {
         this.borrowDateMaterial = borrowDateMaterial;
     }
 
-    public MaterialDTO(String typeMaterial, String name, String thematicArea, boolean isAvailable, int numberCopyMaterial, LocalDate borrowDateMaterial) {
+    public MaterialDTO(String typeMaterial, String name, String thematicArea, int numberCopyMaterial, LocalDate borrowDateMaterial) {
         this.typeMaterial = typeMaterial;
         this.name = name;
         this.thematicArea = thematicArea;
-        this.isAvailable = isAvailable;
+        this.isAvailable = true;
         this.numberCopyMaterial = numberCopyMaterial;
         this.borrowDateMaterial = borrowDateMaterial;
     }

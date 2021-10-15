@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDate;
+
 @Service
 @Validated
 public class CreateMaterialUseCase implements SaveMaterial{
@@ -24,6 +26,8 @@ public class CreateMaterialUseCase implements SaveMaterial{
 
     @Override
     public Mono<String> apply(MaterialDTO materialDTO) {
+        materialDTO.setAvailable(true);
+        materialDTO.setBorrowDateMaterial(LocalDate.now());
         return materialRepository.save(materialMapper.mapperToMaterial(null).apply(materialDTO)).map(Material::getId);
     }
 }
