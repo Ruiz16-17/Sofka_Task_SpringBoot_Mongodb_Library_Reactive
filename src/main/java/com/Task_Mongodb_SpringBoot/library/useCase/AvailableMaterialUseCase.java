@@ -31,7 +31,7 @@ public class AvailableMaterialUseCase implements Function<String, Mono<String>> 
                 .map(materialMapper.mapMaterialToDTO())
                 .filter(materialDTO -> name.equalsIgnoreCase(materialDTO.getName()))
                 .collectList()
-                .flatMap(materialDTOList -> Mono.just("Not avalable. Was borrowed on "+materialDTOList
+                .flatMap(materialDTOList -> Mono.just("Not available. Was borrowed on "+materialDTOList
                         .stream()
                         .map(MaterialDTO::getBorrowDateMaterial)
                         .max(LocalDate::compareTo)

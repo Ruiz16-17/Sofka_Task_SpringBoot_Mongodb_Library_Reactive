@@ -12,7 +12,6 @@ import static org.mockito.Mockito.*;
 
 class FindAllMaterialUseCaseTest {
 
-
     MaterialRepository materialRepository;
     FindAllMaterialUseCase listUseCase;
 
